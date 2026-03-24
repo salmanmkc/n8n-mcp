@@ -26,12 +26,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout PR branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: 'npm'
@@ -79,7 +79,7 @@ jobs:
       # Upload comparison artifacts
       - name: Upload benchmark comparison
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: benchmark-comparison-${{ github.run_number }}
           path: |
@@ -92,7 +92,7 @@ jobs:
       # Post comparison to PR
       - name: Post benchmark comparison to PR
         if: always()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         continue-on-error: true
         with:
           script: |
@@ -150,7 +150,7 @@ jobs:
       # Add status check
       - name: Set benchmark status
         if: always()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         continue-on-error: true
         with:
           script: |
